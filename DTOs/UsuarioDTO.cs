@@ -1,8 +1,6 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace RestauranteAPI.Entities
+﻿namespace RestauranteAPI.DTOs
 {
-    public class Usuario
+    public class UsuarioDTO
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
