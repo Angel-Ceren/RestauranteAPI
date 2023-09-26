@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
     <Folder Include="EndPoints\" />
     <Folder Include="Mappings\" />
     <Folder Include="Repositories\Interfaces\" />
