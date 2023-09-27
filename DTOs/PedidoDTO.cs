@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RestauranteAPI.DTOs
 {
+    // Se ocupa para el endpoint listar
     public class PedidoDTO
     {
         public int Id { get; set; }
@@ -18,5 +19,18 @@ namespace RestauranteAPI.DTOs
         public int UsuarioId { get; set; }
 
         public Usuario Usuario { get; set; }
+    }
+
+    // Se ocupa para el endpoint de crear/guardar
+    public class GuardarPedido
+    {
+        public DateTime FechaPedido { get; set; }
+
+        public string Estado { get; set; }
+
+        public decimal Total { get; set; }
+
+        // Llave foránea
+        public int UsuarioId { get; set; }
     }
 }
