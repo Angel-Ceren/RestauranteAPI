@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RestauranteAPI.Context;
+using RestauranteAPI.Repositories;
+using RestauranteAPI.Repositories.Interfaces;
 //using RestauranteAPI.Endpoints;
-//using RestauranteAPI.Respositories;
-//using RestauranteAPI.Respositories.Interfaces;
 using RestauranteAPI.Settings;
 using System.Reflection;
 using System.Text;
@@ -28,8 +28,8 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 // Manda a llamar los datos de la tabla para los endpoints
 // Crea una nueva instancia
-//builder.Services.AddScoped<>();
-//builder.Services.AddScoped<>();
+builder.Services.AddScoped<IUsuario, UsuarioRepository>();
+builder.Services.AddScoped<IPedido, PedidoRepository>();
 //builder.Services.AddScoped<>();
 
 // Creacion del token
