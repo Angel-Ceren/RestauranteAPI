@@ -1,8 +1,7 @@
-﻿namespace RestauranteAPI.Entities
+﻿namespace RestauranteAPI.DTOs
 {
-    public class Producto
-    {
-        
+    public class ProductoDTO
+    {   //Creacion de nuestro DTO para la entidad Productos 
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
