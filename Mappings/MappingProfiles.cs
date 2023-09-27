@@ -9,12 +9,18 @@ namespace RestauranteAPI.Mappings
         public MappingProfiles()
         {
             // Entidad --> DTO
+            // Usuario
             CreateMap<Usuario, UsuarioDTO>();
-            CreateMap<Producto, ProductoDTO>();
+            // Pedido
+            CreateMap<Pedido, PedidoDTO>();
+            CreateMap<Pedido, GuardarPedido>();
 
             // DTO --> entidad
+            // Usuario
             CreateMap<UsuarioDTO, Usuario>();
-            CreateMap<ProductoDTO, Producto>();
+            // Pedido
+            CreateMap<PedidoDTO, Pedido>();
+            CreateMap<GuardarPedido, Pedido>();
 
         }
     }
