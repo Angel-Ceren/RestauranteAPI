@@ -10,10 +10,13 @@ namespace RestauranteAPI.Mappings
         {
             // Entidad --> DTO
             CreateMap<Usuario, UsuarioDTO>();
+            CreateMap<Producto, ProductoDTO>();
 
             // DTO --> entidad
             CreateMap<UsuarioDTO, Usuario>();
+            CreateMap<ProductoDTO, Producto>();
 
         }
     }
 }
+
