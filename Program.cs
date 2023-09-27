@@ -12,6 +12,7 @@ using RestauranteAPI.Repositories;
 using RestauranteAPI.Settings;
 using System.Reflection;
 using System.Text;
+using RestauranteAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,3 +94,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseEndpoints();
+
+app.Run();
