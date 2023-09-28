@@ -4,6 +4,8 @@ using RestauranteAPI.DTOs;
 using RestauranteAPI.Entities;
 using RestauranteAPI.Repositories.Interfaces;
 
+
+
 namespace RestauranteAPI.Repositories
 {
         public class UsuarioRepository : IUsuario
@@ -25,6 +27,7 @@ namespace RestauranteAPI.Repositories
 
                 return await _db.SaveChangesAsync();
             }
-        }
+
+    }
   
 }
