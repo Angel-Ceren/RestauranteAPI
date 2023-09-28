@@ -55,7 +55,7 @@ namespace RestauranteAPI.Endpoints
                     return Results.NotFound(); //404 Not Found - El recurso soliciado no existe
                 else
                     return Results.NoContent();// 204 No Content - Recurso eliminado
-            }).WithTags("Producto");//.RequireAuthorization();Requiere autorizacion
+            }).WithTags("Categoria");//.RequireAuthorization();Requiere autorizacion
         }
     }
 }
