@@ -13,14 +13,14 @@ namespace RestauranteAPI.Mappings
             CreateMap<Usuario, UsuarioDTO>();
             // Pedido
             CreateMap<Pedido, PedidoDTO>();
-            //CreateMap<Pedido, GuardarPedido>();
+            CreateMap<Pedido, GuardarPedido>();
 
             // DTO --> entidad
             // Usuario
             CreateMap<UsuarioDTO, Usuario>();
             // Pedido
             CreateMap<PedidoDTO, Pedido>();
-            //CreateMap<GuardarPedido, Pedido>();
+            CreateMap<GuardarPedido, Pedido>();
 
         }
     }
