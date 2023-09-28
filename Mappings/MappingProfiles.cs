@@ -5,11 +5,11 @@ using RestauranteAPI.Entities;
 namespace RestauranteAPI.Mappings
 {
     public class MappingProfiles : Profile
-    {
+    { 
         public MappingProfiles()
         {
             // Entidad --> DTO
-            // Usuario
+            // Usuario  
             CreateMap<Usuario, UsuarioDTO>();
             // Pedido
             CreateMap<Pedido, PedidoDTO>();
