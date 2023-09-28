@@ -69,5 +69,10 @@ namespace RestauranteAPI.Repositories
             _db.Pedidos.Update(entidad);
             return await _db.SaveChangesAsync();
         }
+
+        public Task<int> Modificar(int id, GuardarPedido pedido)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
