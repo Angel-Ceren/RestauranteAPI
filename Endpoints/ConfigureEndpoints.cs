@@ -1,4 +1,6 @@
-﻿namespace RestauranteAPI.Endpoints
+﻿using RestauranteAPI.EndPoints;
+
+namespace RestauranteAPI.Endpoints
 {
     public static class ConfigureEndpoints
     {
@@ -7,6 +9,7 @@
             //MUESTRA EL ENDPOINT EN EL NAVEGADOR lueg de añadir el endponits se escrie esta linea
             //despues vamos a programar para agregar la interfaz
             ProductoEndpoints.Add(app);
+            PedidoEndpoints.Add(app);
         }
     }
 }
