@@ -16,7 +16,24 @@ namespace RestauranteAPI.EndPoints
 
                 // Código 201 Created - El recurso se creó con éxito y se devuelve la ubicación del recurso creado
                 return Results.Created("api/usuario/{usuario.Id}", usuario);
-            }).WithTags("usuario").WithTags("Usuarios");
+            }).WithTags("Usuario");
+
+            // Login
+            app.MapPost("api/login", async (UsuarioLogin usuario, IUsuario _usuario) => {
+                var login = await _usuario.Login(usuario);
+                if (login is null)
+                    return Results.NotFound(new { mensaje = "Usuario o contraseña incorrecto" });
+                var token = _usuario.GenerarToken(login);
+                login.Clave = string.Empty;
+                if (string.IsNullOrEmpty(token))
+                {
+                    return Results.Unauthorized();
+                }
+                else
+                {
+                    return Results.Ok(token);
+                }
+            }).WithTags("Usuario");
         }
     }
 }

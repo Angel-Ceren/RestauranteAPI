@@ -11,10 +11,10 @@ namespace RestauranteAPI.EndPoints
         {
             // Método Listar
             app.MapGet("api/pedidos", async (IPedido _pedido) => {
-                var productos = await _pedido.Pedidos();
+                var pedidos = await _pedido.Pedidos();
 
                 // Código 200 - OK; la solicitud se creó correcatemente y se devuelve una lista
-                return Results.Ok(productos);
+                return Results.Ok(pedidos);
             }).WithTags("Pedido").AllowAnonymous();
 
             // Método Buscar x id

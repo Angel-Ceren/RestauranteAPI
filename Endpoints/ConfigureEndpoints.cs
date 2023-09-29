@@ -8,6 +8,7 @@ namespace RestauranteAPI.Endpoints
         {
             //MUESTRA EL ENDPOINT EN EL NAVEGADOR lueg de añadir el endponits se escrie esta linea
             //despues vamos a programar para agregar la interfaz
+            UsuarioEndpoints.Add(app);
             ProductoEndpoints.Add(app);
             PedidoEndpoints.Add(app);
         }
