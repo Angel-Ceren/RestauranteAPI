@@ -56,7 +56,7 @@ namespace RestauranteAPI.Repositories
             return await _db.SaveChangesAsync();
         }
 
-        public async Task<int> Modificar(int id, PedidoDTO pedido)
+        public async Task<int> Modificar(int id, GuardarPedido pedido)
         {
             var entidad = await _db.Pedidos.FindAsync(id);
             if (entidad == null)
@@ -68,11 +68,6 @@ namespace RestauranteAPI.Repositories
 
             _db.Pedidos.Update(entidad);
             return await _db.SaveChangesAsync();
-        }
-
-        public Task<int> Modificar(int id, GuardarPedido pedido)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -9,4 +9,10 @@
         public string Direccion { get; set; }
         public int Telefono { get; set; }
     }
+
+    public class UsuarioLogin
+    {
+        public string Nombre { get; set; }
+        public string Clave { get; set; }
+    }
 }

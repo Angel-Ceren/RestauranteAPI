@@ -6,13 +6,10 @@ using Microsoft.OpenApi.Models;
 using RestauranteAPI.Context;
 using RestauranteAPI.Repositories.Interfaces;
 using RestauranteAPI.Repositories;
-using RestauranteAPI.Repositories;
-using RestauranteAPI.Repositories.Interfaces;
-//using RestauranteAPI.Endpoints;
+using RestauranteAPI.Endpoints;
 using RestauranteAPI.Settings;
 using System.Reflection;
 using System.Text;
-using RestauranteAPI.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,8 +30,7 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 // Crea una nueva instancia
 builder.Services.AddScoped<IUsuario, UsuarioRepository>();
 builder.Services.AddScoped<IPedido, PedidoRepository>();
-//builder.Services.AddScoped<>();
-
+builder.Services.AddScoped<IDetallePedido, DetallePedidoRepository>();
 //Producto Endpoints- para poder hacer uso de nuestros repositorios
 builder.Services.AddScoped<IProducto, ProductoRepository>();
 
