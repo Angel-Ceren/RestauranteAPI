@@ -16,6 +16,9 @@ namespace RestauranteAPI.Mappings
             CreateMap<Pedido, GuardarPedido>();
             //Producto
             CreateMap<Producto, ProductoDTO>();
+            // DetallePedido
+            CreateMap<DetallePedido, DetallePedidoDTO>();
+            CreateMap<DetallePedido, GuardarDetallePedido>();
 
             // DTO --> entidad
             // Usuario
@@ -25,7 +28,9 @@ namespace RestauranteAPI.Mappings
             CreateMap<GuardarPedido, Pedido>();
             //Producto
             CreateMap<ProductoDTO, Producto>();
-
+            // DetallePedido
+            CreateMap<DetallePedidoDTO, DetallePedido>();
+            CreateMap<GuardarDetallePedido, DetallePedido>();
         }
     }
 }
