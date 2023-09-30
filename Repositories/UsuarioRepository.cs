@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using RestauranteAPI.Context;
 using RestauranteAPI.DTOs;
@@ -10,38 +11,38 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace RestauranteAPI.Repositories
+namespace ProductoAPI.Repositories
 {
     public class UsuarioRepository : IUsuario
     {
+        //Agregar constructor despues de agregar estas 2 lineas de codigo, 
+        //seleccionar codigo, acciones rapidas, generar constructor
         private readonly ApplicationDbContext _db;
-
         private readonly IMapper _mapper;
-
         private readonly TokenSetting _tokenSetting;
 
-        public UsuarioRepository(ApplicationDbContext db, IMapper mapper, TokenSetting tokenSetting)
+        public UsuarioRepository(ApplicationDbContext db, IMapper mapper, IOptions<TokenSetting> tokenSetting)
         {
             _db = db;
             _mapper = mapper;
-            _tokenSetting = tokenSetting;
+            _tokenSetting = tokenSetting.Value;
         }
 
         public async Task<int> Crear(UsuarioDTO usuario)
         {
             var entidad = _mapper.Map<UsuarioDTO, Usuario>(usuario);
-            await _db.Usuarios.AddAsync(_mapper.Map<UsuarioDTO, Usuario>(usuario));
+            await _db.Usuarios.AddAsync(entidad);
 
             return await _db.SaveChangesAsync();
         }
 
         public string GenerarToken(UsuarioDTO usuario)
         {
-            var claveSimetrica = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSetting.key));
+            var claveSimetrica = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenSetting.Key));
             var credenciales = new SigningCredentials(claveSimetrica, SecurityAlgorithms.HmacSha256);
-            var claimUsuaio = new List<Claim>
+            var claimsUsuario = new List<Claim>
             {
-                new Claim("id", usuario.ID.ToString()),
+                new Claim("id", usuario.Id.ToString()),
                 new Claim(ClaimTypes.Name, usuario.Nombre),
             };
 
@@ -50,28 +51,19 @@ namespace RestauranteAPI.Repositories
                 audience: _tokenSetting.Audience,
                 expires: DateTime.Now.AddHours(1),
                 signingCredentials: credenciales,
-                claims: claimUsuaio
+                claims: claimsUsuario
                 );
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
         public async Task<UsuarioDTO> Login(UsuarioLogin login)
         {
-            var entidad = await _db.Usuarios.FirstOrDefaultAsync(x => x.Nombre == login.Nombre && x.Clave == login.Clave);
+            var entidad = await _db.Usuarios
+                .FirstOrDefaultAsync(x => x.Nombre == login.Nombre&& x.Clave == login.Clave);
             var usuario = _mapper.Map<Usuario, UsuarioDTO>(entidad);
 
             return usuario;
         }
-
-        public async Task<ICollection<UsuarioDTO>> Usuarios()
-        {
-            var entidades = await _db.Usuarios.ToListAsync();
-
-            var usuarios = _mapper.Map<ICollection<Usuario>, ICollection<UsuarioDTO>>(entidades);
-
-            return usuarios;
-        }
-
     }
-
 }
+

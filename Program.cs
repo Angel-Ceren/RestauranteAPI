@@ -10,6 +10,7 @@ using RestauranteAPI.Endpoints;
 using RestauranteAPI.Settings;
 using System.Reflection;
 using System.Text;
+using ProductoAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ builder.Services.AddSwaggerGen();
 
 //Cadena de conexion
 builder.Services.AddDbContext<ApplicationDbContext>(o => {
-    o.UseSqlServer(builder.Configuration.GetConnectionString("DbConnetion"));
+    o.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
 //Registrar servicio de automapper y que se pueda inicializar
