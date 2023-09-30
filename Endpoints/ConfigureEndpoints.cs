@@ -11,6 +11,7 @@ namespace RestauranteAPI.Endpoints
             UsuarioEndpoints.Add(app);
             ProductoEndpoints.Add(app);
             PedidoEndpoints.Add(app);
+            DetallePedidoEndpoints.Add(app);
         }
     }
 }
