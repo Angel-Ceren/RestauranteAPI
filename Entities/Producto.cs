@@ -1,8 +1,11 @@
-﻿namespace RestauranteAPI.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RestauranteAPI.Entities
 {
     public class Producto
     {
-        
+        // Llave primaria
+        [Key]
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }

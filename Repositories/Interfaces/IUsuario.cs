@@ -7,6 +7,5 @@ namespace RestauranteAPI.Repositories.Interfaces
         Task<int> Crear(UsuarioDTO usuario);
         Task<UsuarioDTO> Login(UsuarioLogin login);
         string GenerarToken(UsuarioDTO usuario);
-        Task<ICollection<UsuarioDTO>> Usuarios();
     }
 }

@@ -9,6 +9,7 @@ using RestauranteAPI.Endpoints;
 using RestauranteAPI.Settings;
 using System.Reflection;
 using System.Text;
+using ProductoAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,7 @@ builder.Services.AddSwaggerGen();
 
 //Cadena de conexion
 builder.Services.AddDbContext<ApplicationDbContext>(o => {
-    o.UseSqlServer(builder.Configuration.GetConnectionString("DbConnetion"));
+    o.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
 //Registrar servicio de automapper y que se pueda inicializar
@@ -27,31 +28,31 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 // Manda a llamar los datos de la tabla para los endpoints
 // Crea una nueva instancia
-builder.Services.AddScoped<IUsuario, UsuarioRepository>();
+
 builder.Services.AddScoped<IPedido, PedidoRepository>();
 builder.Services.AddScoped<IDetallePedido, DetallePedidoRepository>();
 //Producto Endpoints- para poder hacer uso de nuestros repositorios
 builder.Services.AddScoped<IProducto, ProductoRepository>();
+builder.Services.AddScoped<IUsuario, UsuarioRepository>();
 
 // Creacion del token
 builder.Services.Configure<TokenSetting>(builder.Configuration.GetSection("TokenSetting"));
 // Autorizacion
 builder.Services.AddAuthorization();
 // Autenticacion
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    // Parámetros de la validacion del token
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-    {
-        ValidIssuer = builder.Configuration.GetSection("TokenSetting").GetValue<string>("Issuer"),
-        ValidateIssuer = true,
-        ValidAudience = builder.Configuration.GetSection("TokenSetting").GetValue<string>("Audience"),
-        ValidateAudience = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("TokenSetting").GetValue<string>("Key"))),
-        ValidateIssuerSigningKey = true,
-        ValidateLifetime = true,
-    };
-});
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => {
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidIssuer = builder.Configuration.GetSection("TokenSetting").GetValue<string>("Issuer"),
+            ValidateIssuer = true,
+            ValidAudience = builder.Configuration.GetSection("TokenSetting").GetValue<string>("Audience"),
+            ValidateAudience = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("TokenSetting").GetValue<string>("Key"))),
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+        };
+    });
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Producto API", Version = "v1" });
