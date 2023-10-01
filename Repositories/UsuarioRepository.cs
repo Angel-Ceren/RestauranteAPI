@@ -42,8 +42,8 @@ namespace ProductoAPI.Repositories
             var credenciales = new SigningCredentials(claveSimetrica, SecurityAlgorithms.HmacSha256);
             var claimsUsuario = new List<Claim>
             {
-                new Claim("id", usuario.Id.ToString()),
-                new Claim(ClaimTypes.Name, usuario.Nombre),
+                new Claim("id", usuario.ID.ToString()),
+                new Claim(ClaimTypes.Name, usuario.Correo),
             };
 
             var jwt = new JwtSecurityToken(
@@ -59,7 +59,7 @@ namespace ProductoAPI.Repositories
         public async Task<UsuarioDTO> Login(UsuarioLogin login)
         {
             var entidad = await _db.Usuarios
-                .FirstOrDefaultAsync(x => x.Nombre == login.Nombre&& x.Clave == login.Clave);
+                .FirstOrDefaultAsync(x => x.Correo == login.Correo&& x.Clave == login.Clave);
             var usuario = _mapper.Map<Usuario, UsuarioDTO>(entidad);
 
             return usuario;
