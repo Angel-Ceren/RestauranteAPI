@@ -32,4 +32,13 @@ namespace RestauranteAPI.DTOs
         public int PedidoID { get; set; }
         public int ProductoID { get; set; }
     }
+
+    public class EliminarDetallePedido
+    {
+        // Llave primaria
+        public int Cantidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
+        public decimal Subtotal { get; set; }
+        public int PedidoID { get; set; }
+    }
 }

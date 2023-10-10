@@ -15,10 +15,10 @@
                 //200 OK - Muestra que la solicitud se realizo correctamente
                 //y se devuelve una vista
                 return Results.Ok(productos);
-            }).WithTags("Producto"); //Visible metodo listar sin autorizacion...
+            }).WithTags("Producto"); //Visible metodo listar sin autorizacion
 
             //OBTENER POR ID [Authorize] sustituye a : RequireAuthorization();
-            app.MapGet("api/productos/{id}",/*[Authorize]*/  async (int id, IProducto _producto) =>
+                app.MapGet("api/productos/{id}",/*[Authorize]*/  async (int id, IProducto _producto) =>
                 {
                     var producto = await _producto.Producto(id);
                     if (producto == null)
