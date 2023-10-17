@@ -18,7 +18,7 @@ namespace RestauranteAPI.DTOs
         // Llave foránea
         public int UsuarioId { get; set; }
 
-        public Usuario Usuario { get; set; }
+        public InfoUsuario Usuario { get; set; }
     }
 
     // Se ocupa para el endpoint de crear/guardar
@@ -32,5 +32,14 @@ namespace RestauranteAPI.DTOs
 
         // Llave foránea
         public int UsuarioId { get; set; }
+    }
+
+    public class EliminarPedido
+    {
+        public DateTime FechaPedido { get; set; }
+
+        public string Estado { get; set; }
+
+        public decimal Total { get; set; }
     }
 }

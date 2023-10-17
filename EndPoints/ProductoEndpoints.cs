@@ -18,7 +18,7 @@
                 }).WithTags("Producto").AllowAnonymous();
 
             //OBTENER POR ID [Authorize] sustituye a : RequireAuthorization();
-            app.MapGet("api/productos/{id}",/*[Authorize]*/  async (int id, IProducto _producto) =>
+                app.MapGet("api/productos/{id}",/*[Authorize]*/  async (int id, IProducto _producto) =>
                 {
                     var producto = await _producto.Producto(id);
                     if (producto == null)
