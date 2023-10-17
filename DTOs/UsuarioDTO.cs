@@ -12,7 +12,6 @@
 
     public class UsuarioLogin
     {   // SE CREO NUESTRO DTO PARA LUEGO MAPEARLO
-
         public string Correo { get; set; }
         public string Clave { get; set; }
     }

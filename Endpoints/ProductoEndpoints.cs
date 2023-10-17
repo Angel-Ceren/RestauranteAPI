@@ -15,7 +15,7 @@
                     //200 OK - Muestra que la solicitud se realizo correctamente
                     //y se devuelve una vista
                     return Results.Ok(productos);
-                }).WithTags("Producto").RequireAuthorization();
+                }).WithTags("Producto").AllowAnonymous();
 
             //OBTENER POR ID [Authorize] sustituye a : RequireAuthorization();
             app.MapGet("api/productos/{id}",/*[Authorize]*/  async (int id, IProducto _producto) =>
@@ -26,7 +26,7 @@
                     else
                         return Results.Ok(producto);////200 OK - Muestra que la solicitud se realizo correctamente
                                                     //y se devuelve una vista
-                }).WithTags("Producto").RequireAuthorization(); //.RequireAuthorization();Requiere autorizacion
+                }).WithTags("Producto").AllowAnonymous(); //.RequireAuthorization();Requiere autorizacion
 
             //GUARDAR
             app.MapPost("api/producto", async (ProductoDTO producto, IProducto _producto) =>

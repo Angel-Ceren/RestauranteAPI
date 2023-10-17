@@ -19,7 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Cadena de conexion
-builder.Services.AddDbContext<ApplicationDbContext>(o => {
+builder.Services.AddDbContext<ApplicationDbContext>(o => { 
     o.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
