@@ -58,8 +58,7 @@ namespace ProductoAPI.Repositories
 
         public async Task<UsuarioDTO> Login(UsuarioLogin login)
         {
-            var entidad = await _db.Usuarios
-                .FirstOrDefaultAsync(x => x.Correo == login.Correo&& x.Clave == login.Clave);
+            var entidad = await _db.Usuarios.FirstOrDefaultAsync(x => x.Correo == login.Correo && x.Clave == login.Clave);
             var usuario = _mapper.Map<Usuario, UsuarioDTO>(entidad);
 
             return usuario;
